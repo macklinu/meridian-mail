@@ -3,6 +3,7 @@ import { MessageView } from './MessageView'
 
 const App = () => {
   const [files, setFiles] = useState<File[]>([])
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   return (
     <main className="container mx-auto">
@@ -10,16 +11,28 @@ const App = () => {
         <input
           type="file"
           accept=".msg"
+          multiple
           onChange={(event) => {
-            const file = event.target.files?.[0]
-            if (file) {
-              setFiles([file])
-            }
+            const files = Array.from(event.target.files || [])
+            setFiles(files)
           }}
         />
-        {files.map((file, index) => (
-          <MessageView key={`${file.name}-${index}`} file={file} />
-        ))}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="flex flex-col col-span-1">
+            {files.map((file) => (
+              <div
+                className="aria-selected:bg-blue-200 py-2"
+                aria-selected={file === selectedFile}
+                onClick={() => setSelectedFile(file)}
+              >
+                {file.name}
+              </div>
+            ))}
+          </div>
+          <div className="col-span-2">
+            {selectedFile && <MessageView file={selectedFile} />}
+          </div>
+        </div>
       </section>
     </main>
   )
