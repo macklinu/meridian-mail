@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { DateTime } from 'luxon'
 
 const END_HEADER_LINE = '-------------'
 
@@ -54,7 +55,9 @@ export const messageFileParser = async (
         date: z
           .string()
           .nonempty()
-          .transform((date) => new Date(date)),
+          .transform((date) =>
+            DateTime.fromFormat(date, 'ccc LLL dd, yyyy h:mm').toJSDate()
+          ),
       })
       .parse(headers),
   }

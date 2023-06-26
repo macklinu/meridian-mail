@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`msgFileParser("src/data/0002.msg") 1`] = `
+exports[`messageFileParser("src/data/0002.msg") 1`] = `
 {
   "body": "Your character has been deemed ready to take on the world without my protection, meaning that you may now raise your sword against other players if you so desire.  It is with a heavy heart that I take my leave of you, but I trust that you will do fine without me.
 
@@ -23,7 +23,7 @@ Have fun in Meridian!
   -- Your guardian angel",
   "file": Any<File>,
   "headers": {
-    "date": 2023-05-21T17:05:00.000Z,
+    "date": 2023-05-21T13:05:00.000Z,
     "from": "Your guardian angel",
     "subject": "Congratulations!",
     "to": "Lago",
@@ -32,7 +32,7 @@ Have fun in Meridian!
 }
 `;
 
-exports[`msgFileParser("src/data/0003.msg") 1`] = `
+exports[`messageFileParser("src/data/0003.msg") 1`] = `
 {
   "body": "Oh, most worthy adventurer.  Tales of your exploits have been oft told here at the Court, and recently, the Meridian Council itself declared you to possess considerable promise. Perhaps someday you will be given the honor of studying and guarding one of the Five Tokens.
 
@@ -49,7 +49,7 @@ Fair partings, and perhaps we will someday meet at the court.
 ----Baron of Cor Noth Township, Gerah Springer.",
   "file": Any<File>,
   "headers": {
-    "date": 2023-05-29T10:56:00.000Z,
+    "date": 2023-05-29T06:56:00.000Z,
     "from": "Baron Springer of Cor Noth Township",
     "subject": "Invitation to visit the Royal Court",
     "to": "Lago",
@@ -58,7 +58,7 @@ Fair partings, and perhaps we will someday meet at the court.
 }
 `;
 
-exports[`msgFileParser("src/data/0012.msg") 1`] = `
+exports[`messageFileParser("src/data/0012.msg") 1`] = `
 {
   "body": "You have suffered some penalties for logging off in an unsafe area:
 You lost 0 items, 0 spell points, and 0 skill points.
@@ -72,7 +72,7 @@ I recommend you do not use this as a tactic to avoid danger, since it could work
   -- Your guardian angel",
   "file": Any<File>,
   "headers": {
-    "date": 2023-06-02T02:44:00.000Z,
+    "date": 2023-06-01T22:44:00.000Z,
     "from": "Your guardian angel",
     "subject": "Penalties for logging off in an unsafe area",
     "to": "Lago",
@@ -81,7 +81,7 @@ I recommend you do not use this as a tactic to avoid danger, since it could work
 }
 `;
 
-exports[`msgFileParser("src/data/0013.msg") 1`] = `
+exports[`messageFileParser("src/data/0013.msg") 1`] = `
 {
   "body": "You have suffered some penalties for logging off in an unsafe area:
 You lost 0 items, 0 spell points, and 0 skill points.
@@ -95,7 +95,7 @@ I recommend you do not use this as a tactic to avoid danger, since it could work
   -- Your guardian angel",
   "file": Any<File>,
   "headers": {
-    "date": 2023-06-06T02:24:00.000Z,
+    "date": 2023-06-05T22:24:00.000Z,
     "from": "Your guardian angel",
     "subject": "Penalties for logging off in an unsafe area",
     "to": "Lago",
