@@ -1,9 +1,15 @@
 import { useState } from 'react'
-import { MessageView } from './MessageView'
+import { MessageBody } from './MessageBody'
+import { MessageFile, messageFileParser } from './messageFileParser'
+import { MessagePreview } from './MessagePreview'
+
+const sortByDateDesc = (a: MessageFile, b: MessageFile) =>
+  b.headers.date.valueOf() - a.headers.date.valueOf()
 
 const App = () => {
-  const [files, setFiles] = useState<File[]>([])
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [messageFiles, setMessageFiles] = useState<MessageFile[]>([])
+  const [selectedMessageFile, setSelectedMessageFile] =
+    useState<MessageFile | null>(null)
 
   return (
     <main className="container mx-auto">
@@ -12,25 +18,32 @@ const App = () => {
           type="file"
           accept=".msg"
           multiple
-          onChange={(event) => {
+          onChange={async (event) => {
             const files = Array.from(event.target.files || [])
-            setFiles(files)
+            const messageFiles = await Promise.all(
+              files.map((file) => messageFileParser(file))
+            )
+
+            setMessageFiles(messageFiles.sort(sortByDateDesc))
           }}
         />
         <div className="grid grid-cols-3 gap-4">
           <div className="flex flex-col col-span-1">
-            {files.map((file) => (
-              <div
-                className="aria-selected:bg-blue-200 py-2"
-                aria-selected={file === selectedFile}
-                onClick={() => setSelectedFile(file)}
-              >
-                {file.name}
-              </div>
+            {messageFiles.map((messageFile) => (
+              <MessagePreview
+                key={messageFile.id}
+                messageFile={messageFile}
+                aria-selected={messageFile === selectedMessageFile}
+                onSelected={(messageFile) =>
+                  setSelectedMessageFile(messageFile)
+                }
+              />
             ))}
           </div>
           <div className="col-span-2">
-            {selectedFile && <MessageView file={selectedFile} />}
+            {selectedMessageFile && (
+              <MessageBody messageFile={selectedMessageFile} />
+            )}
           </div>
         </div>
       </section>
