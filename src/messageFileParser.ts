@@ -54,7 +54,7 @@ export const messageFileParser = async (
         date: z
           .string()
           .nonempty()
-          .transform((date) => new Date(date)),
+          .transform((date) => new Date(Date.parse(date))),
       })
       .parse(headers),
   }
