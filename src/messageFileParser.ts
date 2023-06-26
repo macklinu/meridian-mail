@@ -1,17 +1,23 @@
 import { DateTime } from 'luxon'
 import { z } from 'zod'
 
-const END_HEADER_LINE = '-------------'
+export const END_HEADER_LINE = '-------------'
+export const DATE_FORMAT = 'ccc LLL dd, yyyy h:mm'
+
+const headersSchema = z.object({
+  from: z.string().nonempty(),
+  to: z.string().nonempty(),
+  subject: z.string().nonempty(),
+  date: z
+    .string()
+    .nonempty()
+    .transform((date) => DateTime.fromFormat(date, DATE_FORMAT).toJSDate()),
+})
 
 export type MessageFile = {
   id: string
   file: File
-  headers: {
-    from: string
-    to: string
-    subject: string
-    date: Date
-  }
+  headers: z.infer<typeof headersSchema>
   body: string
 }
 
@@ -45,18 +51,6 @@ export async function messageFileParser(msgFile: File): Promise<MessageFile> {
     id: window.crypto.randomUUID(),
     file: msgFile,
     body: body.join('\n'),
-    headers: z
-      .object({
-        from: z.string().nonempty(),
-        to: z.string().nonempty(),
-        subject: z.string().nonempty(),
-        date: z
-          .string()
-          .nonempty()
-          .transform((date) =>
-            DateTime.fromFormat(date, 'ccc LLL dd, yyyy h:mm').toJSDate(),
-          ),
-      })
-      .parse(headers),
+    headers: headersSchema.parse(headers),
   }
 }
