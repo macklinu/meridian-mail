@@ -14,12 +14,12 @@ export function MessagePreview({
   return (
     <div
       key={messageFile.id}
-      className="aria-selected:bg-blue-200 py-2"
+      className='py-2 aria-selected:bg-blue-200'
       aria-selected={ariaSelected}
       onClick={() => onSelected(messageFile)}
     >
-      <div className="flex flex-col px-2">
-        <div className="flex flex-row justify-between">
+      <div className='flex flex-col px-2'>
+        <div className='flex flex-row justify-between'>
           <p>{messageFile.headers.from}</p>
           <p>
             {messageFile.headers.date.toLocaleString('en', {

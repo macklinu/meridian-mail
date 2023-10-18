@@ -5,5 +5,5 @@ export type MessageBodyProps = {
 }
 
 export function MessageBody({ messageFile }: MessageBodyProps) {
-  return <pre className="whitespace-break-spaces">{messageFile.body}</pre>
+  return <pre className='whitespace-break-spaces'>{messageFile.body}</pre>
 }

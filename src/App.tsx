@@ -13,11 +13,11 @@ export default function App() {
     useState<MessageFile | null>(null)
 
   return (
-    <main className="container mx-auto">
-      <section className="p-8 space-y-4">
+    <main className='container mx-auto'>
+      <section className='space-y-4 p-8'>
         <input
-          type="file"
-          accept=".msg"
+          type='file'
+          accept='.msg'
           multiple
           onChange={async (event) => {
             const files = Array.from(event.target.files || [])
@@ -28,8 +28,8 @@ export default function App() {
             setMessageFiles(messageFiles.sort(sortByDateDesc))
           }}
         />
-        <div className="grid grid-cols-3 gap-4">
-          <div className="flex flex-col col-span-1">
+        <div className='grid grid-cols-3 gap-4'>
+          <div className='col-span-1 flex flex-col'>
             {messageFiles.map((messageFile) => (
               <MessagePreview
                 key={messageFile.id}
@@ -41,7 +41,7 @@ export default function App() {
               />
             ))}
           </div>
-          <div className="col-span-2">
+          <div className='col-span-2'>
             {selectedMessageFile && (
               <MessageBody messageFile={selectedMessageFile} />
             )}
