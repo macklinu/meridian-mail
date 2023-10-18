@@ -6,11 +6,11 @@ export type MessagePreviewProps = {
   'aria-selected': boolean
 }
 
-export const MessagePreview = ({
+export function MessagePreview({
   messageFile,
   onSelected,
   'aria-selected': ariaSelected,
-}: MessagePreviewProps) => {
+}: MessagePreviewProps) {
   return (
     <div
       key={messageFile.id}

@@ -3,10 +3,11 @@ import { MessageBody } from './MessageBody'
 import { MessageFile, messageFileParser } from './messageFileParser'
 import { MessagePreview } from './MessagePreview'
 
-const sortByDateDesc = (a: MessageFile, b: MessageFile) =>
-  b.headers.date.valueOf() - a.headers.date.valueOf()
+function sortByDateDesc(a: MessageFile, b: MessageFile) {
+  return b.headers.date.valueOf() - a.headers.date.valueOf()
+}
 
-const App = () => {
+export default function App() {
   const [messageFiles, setMessageFiles] = useState<MessageFile[]>([])
   const [selectedMessageFile, setSelectedMessageFile] =
     useState<MessageFile | null>(null)
@@ -21,7 +22,7 @@ const App = () => {
           onChange={async (event) => {
             const files = Array.from(event.target.files || [])
             const messageFiles = await Promise.all(
-              files.map((file) => messageFileParser(file))
+              files.map((file) => messageFileParser(file)),
             )
 
             setMessageFiles(messageFiles.sort(sortByDateDesc))
@@ -50,5 +51,3 @@ const App = () => {
     </main>
   )
 }
-
-export default App

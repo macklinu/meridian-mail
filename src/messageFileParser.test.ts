@@ -6,8 +6,9 @@ import { beforeAll, expect, test } from 'vitest'
 import { messageFileParser } from './messageFileParser'
 import { Settings } from 'luxon'
 
-const dataPath = (fileName?: string) =>
-  path.join(process.cwd(), 'src/data', fileName ?? '')
+function dataPath(fileName?: string) {
+  return path.join(process.cwd(), 'src/data', fileName ?? '')
+}
 
 beforeAll(() => {
   // @ts-expect-error - crypto is not available in the browser; mocking for tests
@@ -21,12 +22,12 @@ test.each(fs.readdirSync(dataPath()))(
   async (fileName) => {
     const testFile = new File(
       [fs.readFileSync(dataPath(fileName), 'utf-8')],
-      fileName
+      fileName,
     )
 
     expect(await messageFileParser(testFile)).toMatchSnapshot({
       id: expect.any(String),
       file: expect.any(File),
     })
-  }
+  },
 )

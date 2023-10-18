@@ -15,9 +15,7 @@ export type MessageFile = {
   body: string
 }
 
-export const messageFileParser = async (
-  msgFile: File
-): Promise<MessageFile> => {
+export async function messageFileParser(msgFile: File): Promise<MessageFile> {
   const text = await msgFile.text()
 
   const headers: Record<string, string> = {}
@@ -56,7 +54,7 @@ export const messageFileParser = async (
           .string()
           .nonempty()
           .transform((date) =>
-            DateTime.fromFormat(date, 'ccc LLL dd, yyyy h:mm').toJSDate()
+            DateTime.fromFormat(date, 'ccc LLL dd, yyyy h:mm').toJSDate(),
           ),
       })
       .parse(headers),

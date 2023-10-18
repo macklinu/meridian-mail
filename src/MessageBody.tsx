@@ -4,6 +4,6 @@ export type MessageBodyProps = {
   messageFile: MessageFile
 }
 
-export const MessageBody = ({ messageFile }: MessageBodyProps) => {
+export function MessageBody({ messageFile }: MessageBodyProps) {
   return <pre className="whitespace-break-spaces">{messageFile.body}</pre>
 }
