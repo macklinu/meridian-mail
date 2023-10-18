@@ -1,8 +1,8 @@
-import type { Config } from 'tailwindcss'
-import defaultTheme from 'tailwindcss/defaultTheme'
+import aspectRatio from '@tailwindcss/aspect-ratio'
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
-import aspectRatio from '@tailwindcss/aspect-ratio'
+import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
