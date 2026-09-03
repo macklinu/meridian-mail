@@ -2,13 +2,19 @@
 
 ## Getting Started
 
-Install dependencies
+Install dependencies.
 
 ```bash
 npm install
 ```
 
-Start the development server
+Generate a bunch of fake `.msg` files. This will create a gitignored `./tmp/messages` directory that you can use to test with.
+
+```bash
+npm run generate
+```
+
+Start the development server.
 
 ```bash
 npm run dev

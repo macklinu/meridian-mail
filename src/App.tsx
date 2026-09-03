@@ -18,19 +18,23 @@ export default function App() {
       <section className='space-y-4 p-8'>
         <input
           type='file'
+          // @ts-expect-error - webkitdirectory is not in the React input element props type
+          webkitdirectory='true'
           accept='.msg'
           multiple
           onChange={async (event) => {
-            const files = Array.from(event.target.files || [])
+            const files = Array.from(event.target.files ?? [])
             const messageFiles = await Promise.all(
-              files.map((file) => messageFileParser(file)),
+              files
+                .filter((file) => file.name.endsWith('.msg'))
+                .map((file) => messageFileParser(file)),
             )
 
             setMessageFiles(messageFiles.sort(sortByDateDesc))
           }}
         />
         <div className='grid grid-cols-3 gap-4'>
-          <div className='col-span-1 flex flex-col'>
+          <div className='col-span-1 flex max-h-screen flex-col overflow-auto'>
             {messageFiles.map((messageFile) => (
               <MessagePreview
                 key={messageFile.id}
